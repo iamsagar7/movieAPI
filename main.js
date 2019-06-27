@@ -1,29 +1,18 @@
-// process.env.NODE_CONFIG_DIR = './config/default';
-const chalk = require('chalk');
-const morgan = require('morgan');
-const helmet = require('helmet');
-const express = require('express');
+const winston = require("winston");
+const express = require("express");
+const config = require("config");
 const app = express();
 
+require("./startup/logging")();
+require("./startup/cors")(app);
+require("./startup/routes")(app);
+require("./startup/db")();
+require("./startup/config")();
+require("./startup/validation")();
 
-require('./startup/logging');
-require('./startup/routes')(app);
-require('./startup/db')();
-require('./startup/config')();
-require('./startup/validate')();
+const port = process.env.PORT || config.get("port");
+const server = app.listen(port, () =>
+  winston.info(`Listening on port ${port}...`)
+);
 
-app.get(express.static('public'));
-app.get(helmet);
-
-if (app.get('env') == 'development') {
-  console.log('Morgan enabaled');
-  app.get(morgan('tiny'));
-}
-
-// const port = process.env.PORT || 3000;
-app.listen(5000, (err, done) => {
-  if (err) console.log(chalk.red("Unable to connect to the port "));
-  console.log(chalk.blue.bold("Sucessfully connected ..."));
-
-});
-module.exports = app;
+module.exports = server;

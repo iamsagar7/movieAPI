@@ -1,36 +1,38 @@
-const config = require('config');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 const Joi = require('joi');
+const bcrypt = require('bcrypt');
+const _ = require('lodash');
 const {
   User
-} = require('./../models/user');
+} = require('../models/user');
+const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
 
 router.post('/', async (req, res) => {
   const {
     error
-  } = validateLogin(req.body);
-  if (error) return res.status(404).send(error.details[0].message);
+  } = validate(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
 
-  const user = await User.findOne({
+  let user = await User.findOne({
     email: req.body.email
   });
-  if (!user) return res.status(400).send('We got an invalid username or password')
+  if (!user) return res.status(400).send('Invalid email or password.');
 
+  const validPassword = await bcrypt.compare(req.body.password, user.password);
+  if (!validPassword) return res.status(400).send('Invalid email or password.');
 
-  const password = await bcrypt.compare(req.body.password, user.password);
-  if (!password) return res.status(400).send('We got an invalid username or password');
-  var token = await user.generateAuthToken();
+  const token = user.generateAuthToken();
   res.send(token);
 });
 
-function validateLogin(auth) {
-  var schema = {
-    password: Joi.string().required(),
-    email: Joi.string().required().regex(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/)
+function validate(req) {
+  const schema = {
+    email: Joi.string().min(5).max(255).required().email(),
+    password: Joi.string().min(5).max(255).required()
   };
-  return Joi.validate(auth, schema);
+
+  return Joi.validate(req, schema);
 }
+
 module.exports = router;

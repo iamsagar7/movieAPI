@@ -1,13 +1,11 @@
-const Fawn = require('fawn');
+const winston = require('winston');
 const mongoose = require('mongoose');
-
+const config = require('config');
 
 module.exports = function () {
-  Fawn.init(mongoose);
-  mongoose.set('useCreateIndex', true);
-  mongoose.connect('mongodb://localhost/data', {
+  const db = config.get('db');
+  mongoose.connect(db, {
       useNewUrlParser: true
     })
-    .then(() => console.log("Mongo database connected ..."))
-
-};
+    .then(() => winston.info(`Connected to ${db}...`));
+}
