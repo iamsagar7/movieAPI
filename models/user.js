@@ -32,7 +32,7 @@ const User = mongoose.model('User', userSchema);
 
 function validateUser(user) {
   var schema = {
-    name: Joi.string().required().regex(/^@/),
+    name: Joi.string().required(),
     id: Joi.objectId(),
     password: Joi.string().required(),
     email: Joi.string().required().regex(/^[a-z0-9](\.?[a-z0-9]){5,}@g(oogle)?mail\.com$/)
