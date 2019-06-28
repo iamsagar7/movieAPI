@@ -1,6 +1,6 @@
 {
   "jwtPrivateKey": "unsecureKey",
-  "db": "mongodb://localhost/vidly",
+  "db": "mongodb://sagar:sagar7@ds243897.mlab.com:43897/movies",
   "port": "3900",
   "requiresAuth": true
 }

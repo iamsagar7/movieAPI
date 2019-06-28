@@ -1,3 +1,4 @@
+const config = require("config");
 const jwt = require('jsonwebtoken');
 const mongoose = require('mongoose');
 const Joi = require('joi');
@@ -39,4 +40,4 @@ function validateUser(user) {
   return Joi.validate(user, schema);
 }
 exports.User = User;
-exports.validateUser = validateUser;
+exports.validate = validateUser;
