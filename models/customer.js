@@ -13,7 +13,7 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
     default: false
   },
   phone: {
-    type: Number,
+    type: String,
     required: true,
     minlength: 5,
     maxlength: 50
@@ -23,12 +23,12 @@ const Customer = mongoose.model('Customer', new mongoose.Schema({
 function validateCustomer(customer) {
   const schema = {
     name: Joi.string().min(5).max(50).required(),
-    phone: Joi.number().required(),
+    phone: Joi.string().min(5).max(50).required(),
     isGold: Joi.boolean()
   };
 
   return Joi.validate(customer, schema);
 }
 
-exports.Customer = Customer;
+exports.Customer = Customer; 
 exports.validate = validateCustomer;

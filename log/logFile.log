@@ -1,1 +1,11 @@
-{"level":"error","message":"Cannot set headers after they are sent to the clientCannot set headers after they are sent to the client","stack":"Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client\n    at ServerResponse.setHeader (_http_outgoing.js:470:11)\n    at ServerResponse.header (/home/sagar/Javascript/mosh/movieAPI/node_modules/express/lib/response.js:767:10)\n    at ServerResponse.send (/home/sagar/Javascript/mosh/movieAPI/node_modules/express/lib/response.js:170:12)\n    at ServerResponse.json (/home/sagar/Javascript/mosh/movieAPI/node_modules/express/lib/response.js:267:15)\n    at ServerResponse.send (/home/sagar/Javascript/mosh/movieAPI/node_modules/express/lib/response.js:158:21)\n    at router.post (/home/sagar/Javascript/mosh/movieAPI/routes/genres.js:30:7)"}
+{"message":"Listening on port 3900...","level":"info"}
+{"message":"Connected to mongodb://sagar:sagar7@ds243897.mlab.com:43897/movies...","level":"info"}
+{"message":"Listening on port 3900...","level":"info"}
+{"message":"Connected to mongodb://sagar:sagar7@ds243897.mlab.com:43897/movies...","level":"info"}
+{"message":"Listening on port 3900...","level":"info"}
+{"message":"Listening on port 3900...","level":"info"}
+{"message":"Connected to mongodb://sagar:sagar7@ds243897.mlab.com:43897/movies...","level":"info"}
+{"message":"Listening on port 3900...","level":"info"}
+{"message":"Connected to mongodb://sagar:sagar7@ds243897.mlab.com:43897/movies...","level":"info"}
+{"message":"Listening on port 3900...","level":"info"}
+{"message":"Connected to mongodb://sagar:sagar7@ds243897.mlab.com:43897/movies...","level":"info"}

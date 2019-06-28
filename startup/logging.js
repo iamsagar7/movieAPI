@@ -9,7 +9,8 @@ module.exports = function () {
       prettyPrint: true
     }),
     new winston.transports.File({
-      filename: 'log/exceptions.log'
+      filename: 'log/exceptions.log',
+      format: winston.format.json()
     }));
   process.on('unhandledRejection', (ex) => {
     throw ex;
@@ -24,4 +25,4 @@ module.exports = function () {
     db: 'mongodb://localhost/data',
     handleExceptions: true
   }));
-};
+}
