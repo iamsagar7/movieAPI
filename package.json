@@ -14,7 +14,7 @@
     "config": "^3.1.0",
     "cors": "^2.8.5",
     "exception-formatter": "^2.1.2",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
     "fawn": "^2.1.5",
     "flatted": "^2.0.0",
